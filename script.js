@@ -67,7 +67,7 @@ World.add(world, Constraint.create({
 
 // create rope
 var rope = Composites.stack(120, 540, 8, 1, 10, 10, function (x, y) {
-    return Bodies.rectangle(x, y, 10, 4);
+    return Bodies.rectangle(x, y, 10, 8);
 });
 Composites.chain(rope, 0.5, 0, -0.5, 0, {stiffness: 0.8, length: 10, render: {type: 'line'}});
 
@@ -99,9 +99,12 @@ World.add(world, [
     box,
     catapult,
     rope,
-    Bodies.rectangle(400, 600, 800, 50.5, {isStatic: true}),
-    Bodies.rectangle(170, 450, 30, 50, {restitution: 0, isStatic: true})
+    Bodies.rectangle(400, 600, 800, 50.5, {isStatic: true})
 ]);
+
+setTimeout(function () {
+    World.add(world, Bodies.rectangle(170, 450, 30, 50, {restitution: 0, isStatic: true}));
+}, 300);
 
 // release box at top of throw
 Events.on(engine, 'beforeUpdate', function (event) {
